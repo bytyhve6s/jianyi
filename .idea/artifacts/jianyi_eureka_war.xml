@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jianyi-eureka:war">
+    <output-path>$PROJECT_DIR$/jianyi-eureka/target</output-path>
+    <root id="archive" name="jianyi-eureka-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="jianyi-eureka:war exploded" />
+    </root>
+  </artifact>
+</component>

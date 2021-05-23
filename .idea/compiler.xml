@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eureka" />
+        <module name="jianyi-app" />
+        <module name="jianyi-dto" />
+        <module name="jianyi-eureka" />
+        <module name="jianyi-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="eureka" target="1.8" />
+      <module name="jianyi-app" target="1.8" />
+      <module name="jianyi-dto" target="1.5" />
+      <module name="jianyi-eureka" target="1.8" />
+      <module name="jianyi-web" target="1.8" />
+      <module name="jianyidto" target="1.5" />
+      <module name="spring-cloud-jianyi" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

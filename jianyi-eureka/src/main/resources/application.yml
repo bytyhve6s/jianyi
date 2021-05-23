@@ -1,0 +1,12 @@
+server:
+  port: 7801
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false # ·ÀÖ¹×ÔÎÒ×¢²á
+security:
+  basic:
+    enabled: true
+  user:
+    name: user
+    password: linkage

@@ -1,0 +1,18 @@
+server:
+  port: 7803
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://user:linkage@localhost:7801/eureka
+spring:
+  application:
+    name: jianyi-app
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/jianyi
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

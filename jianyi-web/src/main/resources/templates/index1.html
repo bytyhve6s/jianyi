@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>简易</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"></link>
+    <link href="/css/bootstrap-theme.css" rel="stylesheet" type="text/css"></link>
+    <script src="/js/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.js" type="text/javascript"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">主页</a></li>
+            <li role="presentation"><a href="#">Profile</a></li>
+            <li role="presentation"><a href="#">Messages</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container" style="margin-left: 0px;margin-top:100px;width: 100px;height: 300px;border: 1px solid #000000;margin-left: 20px;">
+    <p>订单列表</p>
+    <table class="table table-bordered">
+        <tr class="active" th:each="o : ${orders}">
+            <td th:text="${o.id}"></td>
+            <td th:text="${o.maxLength}"></td>
+            <td th:text="${o.overWeight}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

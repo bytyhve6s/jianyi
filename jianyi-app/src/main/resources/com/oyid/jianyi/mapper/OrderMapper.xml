@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oyid.jianyi.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.oyid.jianyi.dto.Order">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_length" jdbcType="DOUBLE" property="goodsLength" />
+    <result column="goods_width" jdbcType="DOUBLE" property="goodsWidth" />
+    <result column="goods_height" jdbcType="DOUBLE" property="goodsHeight" />
+    <result column="actual_weight" jdbcType="DOUBLE" property="actualWeight" />
+    <result column="banlance_weight" jdbcType="DOUBLE" property="banlanceWeight" />
+    <result column="volume" jdbcType="VARCHAR" property="volume" />
+    <result column="max_length" jdbcType="DOUBLE" property="maxLength" />
+    <result column="packing_type" jdbcType="CHAR" property="packingType" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="distribution_way" jdbcType="VARCHAR" property="distributionWay" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="receipt" jdbcType="CHAR" property="receipt" />
+    <result column="receipt2" jdbcType="VARCHAR" property="receipt2" />
+    <result column="over_length" jdbcType="CHAR" property="overLength" />
+    <result column="over_weight" jdbcType="CHAR" property="overWeight" />
+    <result column="over_weight_num" jdbcType="INTEGER" property="overWeightNum" />
+    <result column="goods_type" jdbcType="CHAR" property="goodsType" />
+    <result column="declared_value" jdbcType="VARCHAR" property="declaredValue" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="mailing_user_id" jdbcType="INTEGER" property="mailingUserId" />
+    <result column="packing_num" jdbcType="INTEGER" property="packingNum" />
+    <result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+    <result column="mailing_time" jdbcType="TIMESTAMP" property="mailingTime" />
+    <result column="mailing_state" jdbcType="VARCHAR" property="mailingState" />
+    <result column="destination" jdbcType="VARCHAR" property="destination" />
+    <result column="receiving_clerk" jdbcType="VARCHAR" property="receivingClerk" />
+    <result column="shiping_type" jdbcType="CHAR" property="shipingType" />
+    <result column="service_type" jdbcType="CHAR" property="serviceType" />
+    <result column="next_station" jdbcType="VARCHAR" property="nextStation" />
+    <result column="record_msg" jdbcType="VARCHAR" property="recordMsg" />
+    <result column="sign_msg" jdbcType="VARCHAR" property="signMsg" />
+    <result column="delivery" jdbcType="CHAR" property="delivery" />
+    <result column="since" jdbcType="CHAR" property="since" />
+    <result column="coll_user_id" jdbcType="INTEGER" property="collUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_length, goods_width, goods_height, actual_weight, banlance_weight, volume, 
+    max_length, packing_type, num, distribution_way, item_name, receipt,receipt2, over_length,
+    over_weight, over_weight_num, goods_type, declared_value, note, mailing_user_id, 
+    packing_num, order_num, mailing_time, mailing_state, destination, receiving_clerk, 
+    shiping_type, service_type, next_station, record_msg, sign_msg, delivery, since, 
+    coll_user_id
+  </sql>
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_order
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.oyid.jianyi.dto.Order">
+    insert into user_order (id, goods_length, goods_width, 
+      goods_height, actual_weight, banlance_weight, 
+      volume, max_length, packing_type, 
+      num, distribution_way, item_name, 
+      receipt,receipt2, over_length, over_weight,
+      over_weight_num, goods_type, declared_value, 
+      note, mailing_user_id, packing_num, 
+      order_num, mailing_time, mailing_state, 
+      destination, receiving_clerk, shiping_type, 
+      service_type, next_station, record_msg, 
+      sign_msg, delivery, since, 
+      coll_user_id)
+    values (#{id,jdbcType=INTEGER}, #{goodsLength,jdbcType=DOUBLE}, #{goodsWidth,jdbcType=DOUBLE}, 
+      #{goodsHeight,jdbcType=DOUBLE}, #{actualWeight,jdbcType=DOUBLE}, #{banlanceWeight,jdbcType=DOUBLE}, 
+      #{volume,jdbcType=VARCHAR}, #{maxLength,jdbcType=DOUBLE}, #{packingType,jdbcType=CHAR}, 
+      #{num,jdbcType=INTEGER}, #{distributionWay,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{receipt,jdbcType=CHAR},#{receipt2,jdbcType=VARCHAR}, #{overLength,jdbcType=CHAR}, #{overWeight,jdbcType=CHAR},
+      #{overWeightNum,jdbcType=INTEGER}, #{goodsType,jdbcType=CHAR}, #{declaredValue,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{mailingUserId,jdbcType=INTEGER}, #{packingNum,jdbcType=INTEGER}, 
+      #{orderNum,jdbcType=VARCHAR}, #{mailingTime,jdbcType=TIMESTAMP}, #{mailingState,jdbcType=VARCHAR}, 
+      #{destination,jdbcType=VARCHAR}, #{receivingClerk,jdbcType=VARCHAR}, #{shipingType,jdbcType=CHAR}, 
+      #{serviceType,jdbcType=CHAR}, #{nextStation,jdbcType=VARCHAR}, #{recordMsg,jdbcType=VARCHAR}, 
+      #{signMsg,jdbcType=VARCHAR}, #{delivery,jdbcType=CHAR}, #{since,jdbcType=CHAR}, 
+      #{collUserId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oyid.jianyi.dto.Order">
+    insert into user_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsLength != null">
+        goods_length,
+      </if>
+      <if test="goodsWidth != null">
+        goods_width,
+      </if>
+      <if test="goodsHeight != null">
+        goods_height,
+      </if>
+      <if test="actualWeight != null">
+        actual_weight,
+      </if>
+      <if test="banlanceWeight != null">
+        banlance_weight,
+      </if>
+      <if test="volume != null">
+        volume,
+      </if>
+      <if test="maxLength != null">
+        max_length,
+      </if>
+      <if test="packingType != null">
+        packing_type,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="distributionWay != null">
+        distribution_way,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="receipt != null">
+        receipt,
+      </if>
+      <if test="receipt2 != null">
+        receipt2,
+      </if>
+      <if test="overLength != null">
+        over_length,
+      </if>
+      <if test="overWeight != null">
+        over_weight,
+      </if>
+      <if test="overWeightNum != null">
+        over_weight_num,
+      </if>
+      <if test="goodsType != null">
+        goods_type,
+      </if>
+      <if test="declaredValue != null">
+        declared_value,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="mailingUserId != null">
+        mailing_user_id,
+      </if>
+      <if test="packingNum != null">
+        packing_num,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="mailingTime != null">
+        mailing_time,
+      </if>
+      <if test="mailingState != null">
+        mailing_state,
+      </if>
+      <if test="destination != null">
+        destination,
+      </if>
+      <if test="receivingClerk != null">
+        receiving_clerk,
+      </if>
+      <if test="shipingType != null">
+        shiping_type,
+      </if>
+      <if test="serviceType != null">
+        service_type,
+      </if>
+      <if test="nextStation != null">
+        next_station,
+      </if>
+      <if test="recordMsg != null">
+        record_msg,
+      </if>
+      <if test="signMsg != null">
+        sign_msg,
+      </if>
+      <if test="delivery != null">
+        delivery,
+      </if>
+      <if test="since != null">
+        since,
+      </if>
+      <if test="collUserId != null">
+        coll_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsLength != null">
+        #{goodsLength,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsWidth != null">
+        #{goodsWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsHeight != null">
+        #{goodsHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="actualWeight != null">
+        #{actualWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="banlanceWeight != null">
+        #{banlanceWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=VARCHAR},
+      </if>
+      <if test="maxLength != null">
+        #{maxLength,jdbcType=DOUBLE},
+      </if>
+      <if test="packingType != null">
+        #{packingType,jdbcType=CHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="distributionWay != null">
+        #{distributionWay,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="receipt != null">
+        #{receipt,jdbcType=CHAR},
+      </if>
+      <if test="receipt2 != null">
+        #{receipt2,jdbcType=CHAR},
+      </if>
+      <if test="overLength != null">
+        #{overLength,jdbcType=CHAR},
+      </if>
+      <if test="overWeight != null">
+        #{overWeight,jdbcType=CHAR},
+      </if>
+      <if test="overWeightNum != null">
+        #{overWeightNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsType != null">
+        #{goodsType,jdbcType=CHAR},
+      </if>
+      <if test="declaredValue != null">
+        #{declaredValue,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingUserId != null">
+        #{mailingUserId,jdbcType=INTEGER},
+      </if>
+      <if test="packingNum != null">
+        #{packingNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingTime != null">
+        #{mailingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mailingState != null">
+        #{mailingState,jdbcType=VARCHAR},
+      </if>
+      <if test="destination != null">
+        #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="receivingClerk != null">
+        #{receivingClerk,jdbcType=VARCHAR},
+      </if>
+      <if test="shipingType != null">
+        #{shipingType,jdbcType=CHAR},
+      </if>
+      <if test="serviceType != null">
+        #{serviceType,jdbcType=CHAR},
+      </if>
+      <if test="nextStation != null">
+        #{nextStation,jdbcType=VARCHAR},
+      </if>
+      <if test="recordMsg != null">
+        #{recordMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="signMsg != null">
+        #{signMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="delivery != null">
+        #{delivery,jdbcType=CHAR},
+      </if>
+      <if test="since != null">
+        #{since,jdbcType=CHAR},
+      </if>
+      <if test="collUserId != null">
+        #{collUserId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oyid.jianyi.dto.Order">
+    update user_order
+    <set>
+      <if test="goodsLength != null">
+        goods_length = #{goodsLength,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsWidth != null">
+        goods_width = #{goodsWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsHeight != null">
+        goods_height = #{goodsHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="actualWeight != null">
+        actual_weight = #{actualWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="banlanceWeight != null">
+        banlance_weight = #{banlanceWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="volume != null">
+        volume = #{volume,jdbcType=VARCHAR},
+      </if>
+      <if test="maxLength != null">
+        max_length = #{maxLength,jdbcType=DOUBLE},
+      </if>
+      <if test="packingType != null">
+        packing_type = #{packingType,jdbcType=CHAR},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="distributionWay != null">
+        distribution_way = #{distributionWay,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="receipt != null">
+        receipt = #{receipt,jdbcType=CHAR},
+      </if>
+      <if test="receipt2 != null">
+        receipt2 = #{receipt2,jdbcType=CHAR},
+      </if>
+      <if test="overLength != null">
+        over_length = #{overLength,jdbcType=CHAR},
+      </if>
+      <if test="overWeight != null">
+        over_weight = #{overWeight,jdbcType=CHAR},
+      </if>
+      <if test="overWeightNum != null">
+        over_weight_num = #{overWeightNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsType != null">
+        goods_type = #{goodsType,jdbcType=CHAR},
+      </if>
+      <if test="declaredValue != null">
+        declared_value = #{declaredValue,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingUserId != null">
+        mailing_user_id = #{mailingUserId,jdbcType=INTEGER},
+      </if>
+      <if test="packingNum != null">
+        packing_num = #{packingNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="mailingTime != null">
+        mailing_time = #{mailingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mailingState != null">
+        mailing_state = #{mailingState,jdbcType=VARCHAR},
+      </if>
+      <if test="destination != null">
+        destination = #{destination,jdbcType=VARCHAR},
+      </if>
+      <if test="receivingClerk != null">
+        receiving_clerk = #{receivingClerk,jdbcType=VARCHAR},
+      </if>
+      <if test="shipingType != null">
+        shiping_type = #{shipingType,jdbcType=CHAR},
+      </if>
+      <if test="serviceType != null">
+        service_type = #{serviceType,jdbcType=CHAR},
+      </if>
+      <if test="nextStation != null">
+        next_station = #{nextStation,jdbcType=VARCHAR},
+      </if>
+      <if test="recordMsg != null">
+        record_msg = #{recordMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="signMsg != null">
+        sign_msg = #{signMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="delivery != null">
+        delivery = #{delivery,jdbcType=CHAR},
+      </if>
+      <if test="since != null">
+        since = #{since,jdbcType=CHAR},
+      </if>
+      <if test="collUserId != null">
+        coll_user_id = #{collUserId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oyid.jianyi.dto.Order">
+    update user_order
+    set goods_length = #{goodsLength,jdbcType=DOUBLE},
+      goods_width = #{goodsWidth,jdbcType=DOUBLE},
+      goods_height = #{goodsHeight,jdbcType=DOUBLE},
+      actual_weight = #{actualWeight,jdbcType=DOUBLE},
+      banlance_weight = #{banlanceWeight,jdbcType=DOUBLE},
+      volume = #{volume,jdbcType=VARCHAR},
+      max_length = #{maxLength,jdbcType=DOUBLE},
+      packing_type = #{packingType,jdbcType=CHAR},
+      num = #{num,jdbcType=INTEGER},
+      distribution_way = #{distributionWay,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      receipt = #{receipt,jdbcType=CHAR},
+      receipt2 = #{receipt2,jdbcType=VARCHAR},
+      over_length = #{overLength,jdbcType=CHAR},
+      over_weight = #{overWeight,jdbcType=CHAR},
+      over_weight_num = #{overWeightNum,jdbcType=INTEGER},
+      goods_type = #{goodsType,jdbcType=CHAR},
+      declared_value = #{declaredValue,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      mailing_user_id = #{mailingUserId,jdbcType=INTEGER},
+      packing_num = #{packingNum,jdbcType=INTEGER},
+      order_num = #{orderNum,jdbcType=VARCHAR},
+      mailing_time = #{mailingTime,jdbcType=TIMESTAMP},
+      mailing_state = #{mailingState,jdbcType=VARCHAR},
+      destination = #{destination,jdbcType=VARCHAR},
+      receiving_clerk = #{receivingClerk,jdbcType=VARCHAR},
+      shiping_type = #{shipingType,jdbcType=CHAR},
+      service_type = #{serviceType,jdbcType=CHAR},
+      next_station = #{nextStation,jdbcType=VARCHAR},
+      record_msg = #{recordMsg,jdbcType=VARCHAR},
+      sign_msg = #{signMsg,jdbcType=VARCHAR},
+      delivery = #{delivery,jdbcType=CHAR},
+      since = #{since,jdbcType=CHAR},
+      coll_user_id = #{collUserId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

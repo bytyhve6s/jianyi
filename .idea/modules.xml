@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jianyi-app/jianyi-app.iml" filepath="$PROJECT_DIR$/jianyi-app/jianyi-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jianyi-dto/jianyi-dto.iml" filepath="$PROJECT_DIR$/jianyi-dto/jianyi-dto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jianyi-eureka/jianyi-eureka.iml" filepath="$PROJECT_DIR$/jianyi-eureka/jianyi-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jianyi-web/jianyi-web.iml" filepath="$PROJECT_DIR$/jianyi-web/jianyi-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-jianyi.iml" filepath="$PROJECT_DIR$/spring-cloud-jianyi.iml" />
+    </modules>
+  </component>
+</project>
