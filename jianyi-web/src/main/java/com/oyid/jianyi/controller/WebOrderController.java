@@ -7,18 +7,17 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.oyid.jianyi.common.FastJsonUtil;
 import com.oyid.jianyi.dto.Order;
 import com.oyid.jianyi.dto.User;
+import com.oyid.jianyi.dto.UserOrder;
 import com.oyid.jianyi.feign.AppFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -68,7 +67,7 @@ public class WebOrderController {
         User mailUser = FastJsonUtil.parseToBean(mailingUser,User.class);
         String collUser = appFeign.queryUserById(collUserId);
         User coUser = FastJsonUtil.parseToBean(collUser,User.class);
-        jsonObject.put("order",orderList);
+        jsonObject.put("orderList",orderList);
         jsonObject.put("mailingUser",mailUser);
         jsonObject.put("collUser",coUser);
         return jsonObject;
@@ -83,7 +82,7 @@ public class WebOrderController {
         return "success";
     }
 
-    @RequestMapping(value = "/queryOrderById",method = RequestMethod.POST)
+    @RequestMapping(value = "/queryOrderById",method = RequestMethod.GET)
     @ResponseBody
     public JSONObject queryOrderById(ModelMap map, HttpServletRequest request){
         JSONObject jsonObject = new JSONObject();
@@ -99,6 +98,61 @@ public class WebOrderController {
         jsonObject.put("order",orders);
         jsonObject.put("mailingUser",mailUser);
         jsonObject.put("collUser",coUser);
+        return jsonObject;
+    }
+
+    @RequestMapping(value = "/saveOrder",method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject saveOrder(HttpServletRequest request){
+        JSONObject jsonObject = new JSONObject();
+        String orders = request.getParameter("order");
+        Order order = JSONObject.parseObject(orders,Order.class);
+        UserOrder userOrder = JSONObject.parseObject(orders,UserOrder.class);// 包含收件人和寄件人的信息
+        if(order.getMailingUserId() == null || order.getMailingUserId().equals("")){
+            User user = new User();
+            user.setUserName(userOrder.getMailingUserName());
+            user.setAddress(userOrder.getMailingAddress());
+            user.setCompanyName(userOrder.getMailingCompanyName());
+            user.setMobilePhone(userOrder.getMailingMobilePhone());
+            user.setTelphone(userOrder.getMailingTelphone());
+            String userId = appFeign.addUser(user);
+            String id = FastJsonUtil.parseToString(userId);
+            order.setMailingUserId(Integer.valueOf(id));
+        }
+        if(order.getCollUserId() == null || order.getCollUserId().equals("")){
+            User user = new User();
+            user.setUserName(userOrder.getCollUserName());
+            user.setAddress(userOrder.getCollAddress());
+            user.setCompanyName(userOrder.getCollCompanyName());
+            user.setMobilePhone(userOrder.getCollMobilePhone());
+            user.setTelphone(userOrder.getCollTelphone());
+            String userId = appFeign.addUser(user);
+            String id = FastJsonUtil.parseToString(userId);
+            order.setCollUserId(Integer.valueOf(id));
+        }
+        if(order.getId() != null || !order.getId().equals("")){
+            appFeign.updateOrder(order);
+        }else {
+            appFeign.addOrder(order);
+        }
+        jsonObject.put("result","success");
+        return jsonObject;
+    }
+
+    @RequestMapping(value = "/queryUserByName",method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject queryUserByName(@RequestParam String userName){
+        JSONObject jsonObject = new JSONObject();
+        String users = appFeign.queryUser();
+        List<User> userList = FastJsonUtil.parseToList(users,User.class);
+        User user1 = new User();
+        for(User user : userList){
+            if(user.getUserName().equals(userName)){
+                user1 = user;
+                break;
+            }
+        }
+        jsonObject.put("user",user1);
         return jsonObject;
     }
 }

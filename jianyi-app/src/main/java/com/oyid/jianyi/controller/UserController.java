@@ -28,9 +28,8 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/addUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Result<String> addUser(@RequestBody User user) {
-        userService.insert(user);
-        return ok();
+    public Result<Integer> addUser(@RequestBody User user) {
+        return ok(userService.insert(user));
     }
 
     /**

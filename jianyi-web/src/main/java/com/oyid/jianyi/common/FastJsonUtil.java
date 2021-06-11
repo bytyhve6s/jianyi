@@ -32,4 +32,11 @@ public class FastJsonUtil {
         }
         return null;
     }
+
+    public static String parseToString(String s){
+        JSONObject jsonObject = parseToJsonObject(s);
+        ResultDto resultDto = JSON.toJavaObject(jsonObject, ResultDto.class);
+        String content = resultDto.getContent();
+        return content;
+    }
 }

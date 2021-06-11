@@ -4,8 +4,8 @@ spring:
   application:
     name: jianyi-web
 #spring thymeleaf ����
-  thymeleaf:
-    cache: false # ���û���ر� false �ر� true ����  һ�㿪�������н���ر�
+  #thymeleaf:
+    #cache: false # ���û���ر� false �ر� true ����  һ�㿪�������н���ر�
     #prefix: classpath:/templates/  # ����ǰ׺
     #suffix: .html #���ú�׺
     #encoding: UTF-8  #���ñ���

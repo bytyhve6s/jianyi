@@ -1,6 +1,7 @@
 package com.oyid.jianyi.feign;
 
 import com.alibaba.fastjson.JSON;
+import com.oyid.jianyi.dto.Order;
 import com.oyid.jianyi.dto.User;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.MediaType;
@@ -33,10 +34,10 @@ public interface AppFeign {
     public String queryUser();
 
     @RequestMapping(value = "/order/addOrder", method = RequestMethod.POST)
-    public String addOrder(@RequestBody User user);
+    public String addOrder(@RequestBody Order order);
 
     @RequestMapping(value = "/order/updateOrder", method = RequestMethod.POST)
-    public String updateOrder(@RequestBody User user);
+    public String updateOrder(@RequestBody  Order order);
 
     @RequestMapping(value = "/order/deleteOrder/{id}", method = RequestMethod.POST)
     public String deleteOrder(@PathVariable("id") int id);

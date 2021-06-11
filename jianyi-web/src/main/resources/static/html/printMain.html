@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>嘉兴简易物流有限公司打印</title>
+    <script type="text/javascript" src="../js/lib/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../js/lib/JQuery.print.js"></script>
+    <script type="text/javascript" src="../js/lib/jquery.print-preview.js"></script>
+    <script type="text/javascript" src="../js/print.js"></script>
+    <link rel="stylesheet" href="../css/print.css"/>
+    <link rel="stylesheet" href="../css/mint-ui.css"/>
+</head>
+
+<body>
+<input type="button" value="打印" onclick="print()"/>
+<form id="app" runat="server">
+    <div id="wrap">
+        <!--<div id="header">嘉兴简易物流</div>-->
+        <div id="container">
+            <div id="left_side"></div>
+            <div id="content">
+                <div> <!--style="border:solid 1px black;">-->
+                    <p style="margin-bottom: -5px;"><img src="../img/logo.png"/> <span
+                            style="font-size:30px;font-weight: bolder;">嘉兴简易物流有限公司&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span><span
+                            style="font-size:22px;font-weight: bolder;">物流运输单</span></p>
+                    <table border="1" cellspacing="0" cellpadding="0" width="1000px">
+                        <tr>
+                            <td colspan="20">始发站：{{order.mailingState}} 到达站：{{order.nextStation}} 托运日期
+                                {{order.mailingTime}} 运单号：{{order.orderNum}}
+                            </td>
+                        </tr>
+                        <!--货运双方信息-->
+                        <tr>
+                            <td rowSpan="4" style="text-align: center;">托<br>运<br>方</td>
+                            <td colspan="3">单位名称</td>
+                            <td colspan="6">{{order.mailingCompanyName}}</td>
+                            <td rowSpan="4" style="text-align: center;">收<br>货<br>方</td>
+                            <td colspan="3">单位名称</td>
+                            <td colspan="6">{{order.collCompanyName}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">单位地址</td>
+                            <td colspan="6">{{order.mailingAddress}}</td>
+                            <td colspan="3">单位地址</td>
+                            <td colspan="6">{{order.collAddress}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">托运人</td>
+                            <td colspan="6">{{order.mailingUserName}}</td>
+                            <td colspan="3">收货人</td>
+                            <td colspan="6">{{order.collUserName}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">联系电话</td>
+                            <td colspan="6">{{order.mailingMobilePhone}}</td>
+                            <td colspan="3">联系电话</td>
+                            <td colspan="6">{{order.collMobilePhone}}</td>
+                        </tr>
+                        <!--货物相关信息-->
+                        <tr>
+                            <td colspan="3">货物名称</td>
+                            <td colspan="2">包装</td>
+                            <td colspan="2">数量</td>
+                            <td colspan="2">重量</td>
+                            <td colspan="2">立方</td>
+                            <td rowspan="8" colspan="2" style="text-align:left;font-size: 9px;">
+                                购买保险说明：<br>
+                                1、托运方可以自愿选择是否购买货物保险；购买保险费用按保费的千分之三收取。<br>
+                                2、未买货物保险的货物都视为客户自保，出现货损与运输单位无关。<br>
+                                3、液体、易碎品、裸装货物、灌装货物、异性不规则件不允许购买保险。<br>
+                                4、保险理赔有相关单位进行处理。
+                            </td>
+                            <td colspan="2">收费项目</td>
+                            <td>万</td>
+                            <td>千</td>
+                            <td>百</td>
+                            <td>十</td>
+                            <td>元</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2">运输费用</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2">送货费用</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2"></td>
+                            <td colspan="2">提货费用</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">支付方式</td>
+                            <td colspan="2">现付</td>
+                            <td></td>
+                            <td colspan="2">到付</td>
+                            <td></td>
+                            <td colspan="2">月结</td>
+                            <td></td>
+                            <td colspan="2">回单费用</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">提货方式</td>
+                            <td colspan="2">网点自提</td>
+                            <td></td>
+                            <td colspan="2">送货上门</td>
+                            <td></td>
+                            <td colspan="2">上门提货</td>
+                            <td></td>
+                            <td colspan="2">保险费用</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">签回单</td>
+                            <td></td>
+                            <td></td>
+                            <td>份</td>
+                            <td colspan="2">快递返回</td>
+                            <td></td>
+                            <td colspan="2">网点返回</td>
+                            <td></td>
+                            <td colspan="2">共计费用</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">备注事项</td>
+                            <td colspan="8"></td>
+                            <td colspan="7">共计费用（大写）： 万 仟 佰 十 元整</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: center;font-size: 20px;font-weight: bolder;">
+                                特<br>殊<br>约<br>定
+                            </td>
+                            <td colspan="17" style="font-size: 11px;text-align: left;">
+                                1、托运货物必须参加保险，如不参加保险出现货损、货差由托运人负责，赔偿不超过运费的三倍；<br>
+                                2、在保险中单件物品价值超过伍仟元必须事先告知（在运输单中注明），否则出险后最高以伍仟元记赔；<br>
+                                3、不得假报货名、不得在托运货物内夹带危险品、违禁品，否则一切损失由托运人负责；<br>
+                                4、网点自提货物必须在七日内提走，如不提走按无货主处理，此单有效期为一个月，逾期作废；<br>
+                                5、托运人未在托运日起一个月内向承运人提出货物未到通知，则视为货物以完好无损，交付无异议；<br>
+                                6、承运人对如下损失不承担责任：<br>
+                                &emsp;A.因不可抗力（包括但不限于自然灾害、政府行为、战争等社会异常事件）造成货物损坏、短缺、灭失、污染、变质或延迟交付；<br>
+                                &emsp;B.因货物本身的自然性质，质量瑕疵或缺陷、合理损耗等造成的损失；<br>
+                                &emsp;C.托运人自行包装或容器不良，但从外部无法发现；<br>
+                                &emsp;D.托运人自行包装，到达时外包装完好而内件缺少或者损坏。<br>
+                                7、凡因本单或与本单有关的争议，当事人可通过协商或调解解决，协商或协调不成，任何一方均应向承运人总部所在地人民法院提起诉讼；<br>
+                                8、托运人已详细阅读并同意以上特别约定条款，签字即生效。<br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="right_side"></div>
+        </div>
+        <div id="footer"></div>
+    </div>
+</form>
+</body>
+<script type="text/javascript" src="../js/lib/vue.js"></script>
+<script type="text/javascript" src="../js/lib/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/lib/mint-ui.min.js"></script>
+<script type="text/javascript" src="../js/lib/common.js"></script>
+<script type="text/javascript" src="../js/printMain.js"></script>
+</html>

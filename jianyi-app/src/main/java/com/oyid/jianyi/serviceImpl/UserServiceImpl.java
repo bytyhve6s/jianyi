@@ -22,7 +22,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int insert(User record) {
-        return userMapper.insert(record);
+        userMapper.insert(record);
+        return record.getId();
     }
 
     @Override

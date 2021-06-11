@@ -1,6 +1,7 @@
 package com.oyid.jianyi.feign;
 
 import com.alibaba.fastjson.JSON;
+import com.oyid.jianyi.dto.Order;
 import com.oyid.jianyi.dto.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,12 +40,12 @@ public class AppHystrixFallBack implements AppFeign {
     }
 
     @Override
-    public String addOrder(@RequestBody User user) {
+    public String addOrder(@RequestBody Order order) {
         return null;
     }
 
     @Override
-    public String updateOrder(@RequestBody User user) {
+    public String updateOrder(@RequestBody Order order) {
         return null;
     }
 

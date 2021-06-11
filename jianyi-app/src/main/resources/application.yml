@@ -10,7 +10,7 @@ spring:
   application:
     name: jianyi-app
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/jianyi
+    url: jdbc:mysql://127.0.0.1:3306/jianyi?useUnicode=true&characterEncoding=utf8
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: 123456
